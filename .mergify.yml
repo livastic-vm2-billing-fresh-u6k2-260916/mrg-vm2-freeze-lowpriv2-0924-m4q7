@@ -1,7 +1,7 @@
 scopes:
   source:
     files:
-      freeze-new:
+      freeze-final:
         include:
           - freezearea/**
       config:
