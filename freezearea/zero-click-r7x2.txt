@@ -1,3 +1,0 @@
-VM2 zero-click Scheduled Freeze external read-only probe
-
-attacker synchronize after trusted scope rename
