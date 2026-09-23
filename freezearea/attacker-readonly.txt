@@ -1,1 +1,1 @@
-read-only attacker frozen-area change
+read-only attacker frozen-area change after trusted scope rename
