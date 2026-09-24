@@ -1,9 +1,20 @@
 scopes:
   source:
     files:
-      freeze-final:
+      sensitive:
         include:
-          - freezearea/**
-      config:
-        include:
-          - .mergify.yml
+          - 'critical/control.txt'
+          - 'critical/guard\name.txt'
+
+merge_protections_settings:
+  reporting_method: check-runs
+  post_comment: true
+  auto_merge_conditions: true
+
+merge_protections:
+  - name: VM2 sensitive scope CI B7Q4
+    if:
+      - base = main
+      - scope = sensitive
+    success_conditions:
+      - check-success = vm2-scope-ci

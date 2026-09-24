@@ -1,0 +1,39 @@
+name: VM2 Backslash Scope CI
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  scope-ci:
+    name: vm2-scope-ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect Mergify scopes with released CLI
+        uses: Mergifyio/gha-mergify-ci@v25
+        with:
+          action: scopes
+          mergify_cli_version: 2026.9.16.1
+
+      - name: Run sensitive invariant when the sensitive scope is detected
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat "$RUNNER_TEMP/mergify-scopes.json"
+          sensitive=$(jq -r '(.scopes | index("sensitive")) != null' "$RUNNER_TEMP/mergify-scopes.json")
+          echo "sensitive=$sensitive"
+          if [ "$sensitive" = "true" ]; then
+            if grep -R -Fq 'UNSAFE' critical; then
+              echo 'VM2_SENSITIVE_INVARIANT_FAIL=true'
+              exit 1
+            fi
+          else
+            echo 'VM2_SENSITIVE_SCOPE_SKIPPED=true'
+          fi
