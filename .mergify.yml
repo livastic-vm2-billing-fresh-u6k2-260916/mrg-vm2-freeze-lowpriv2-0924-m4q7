@@ -7,11 +7,3 @@ scopes:
       config:
         include:
           - .mergify.yml
-
-pull_request_rules:
-  - name: VM2 command replay materialization rule
-    conditions:
-      - title = VM2_COMMAND_REPLAY_NEVER_MATCH_R3K8
-    actions:
-      comment:
-        message: VM2_COMMAND_REPLAY_UNREACHABLE_R3K8
