@@ -12,7 +12,7 @@ queue_rules:
   - name: default
     queue_conditions: []
     merge_conditions:
-      - check-success = VM2_MQ_FINALIZER_HOLD_R6K3
+      - label = VM2_MQ_FINALIZER_RELEASE_R6K3
     merge_method: merge
 
 merge_queue:
