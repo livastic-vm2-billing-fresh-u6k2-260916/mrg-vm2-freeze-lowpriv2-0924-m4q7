@@ -1,0 +1,33 @@
+scopes:
+  source:
+    files:
+      freeze-final:
+        include:
+          - freezearea/**
+      config:
+        include:
+          - .github/mergify.yml
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-neutral = Mergify Merge Protections
+    merge_method: merge
+
+merge_queue:
+  max_parallel_checks: 1
+
+merge_protections_settings:
+  reporting_method: check-runs
+  post_comment: true
+
+merge_protections:
+  - name: VM2 CONFIG CHANGED TRUE
+    if:
+      - mergify-configuration-changed
+    success_conditions: true
+  - name: VM2 CONFIG CHANGED FALSE
+    if:
+      - -mergify-configuration-changed
+    success_conditions: true
