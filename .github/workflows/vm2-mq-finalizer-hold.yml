@@ -1,0 +1,11 @@
+name: VM2 MQ Finalizer Hold R6K3
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  hold:
+    name: VM2_MQ_FINALIZER_HOLD_R6K3
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "VM2 controlled finalizer release"
