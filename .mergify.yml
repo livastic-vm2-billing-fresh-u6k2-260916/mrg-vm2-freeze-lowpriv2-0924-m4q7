@@ -1,20 +1,10 @@
-scopes:
-  source:
-    files:
-      sensitive:
-        include:
-          - 'critical/control.txt'
-          - 'critical/guard\name.txt'
-
 merge_protections_settings:
   reporting_method: check-runs
   post_comment: true
-  auto_merge_conditions: true
 
 merge_protections:
-  - name: VM2 sensitive scope CI B7Q4
+  - name: VM2 retarget main-only blocker Q6N4
     if:
       - base = main
-      - scope = sensitive
     success_conditions:
-      - check-success = vm2-scope-ci
+      - check-success = VM2_RETARGET_NEVER_GREEN_Q6N4
