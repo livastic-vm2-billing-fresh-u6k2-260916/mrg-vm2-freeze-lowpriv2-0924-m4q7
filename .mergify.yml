@@ -1,10 +1,19 @@
-merge_protections_settings:
-  reporting_method: check-runs
-  post_comment: true
+scopes:
+  source:
+    files:
+      freeze-final:
+        include:
+          - freezearea/**
+      config:
+        include:
+          - .mergify.yml
 
-merge_protections:
-  - name: VM2 retarget main-only blocker Q6N4
-    if:
-      - base = main
-    success_conditions:
-      - check-success = VM2_RETARGET_NEVER_GREEN_Q6N4
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM2_MQ_FINALIZER_HOLD_R6K3
+    merge_method: merge
+
+merge_queue:
+  max_parallel_checks: 1
