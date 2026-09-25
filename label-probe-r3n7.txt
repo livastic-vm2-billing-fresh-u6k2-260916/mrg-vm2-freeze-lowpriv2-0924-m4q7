@@ -1,1 +1,1 @@
-VM2 Scheduled Freeze label identity probe R3N7
+VM2 Scheduled Freeze label identity probe R3N7 synchronized
