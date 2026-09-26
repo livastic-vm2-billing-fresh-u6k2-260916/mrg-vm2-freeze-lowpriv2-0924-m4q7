@@ -1,0 +1,8 @@
+merge_queue:
+  mode: serial
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM2_GITNOTE_HOLD_R8N5
